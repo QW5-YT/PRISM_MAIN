@@ -8,11 +8,14 @@
 <style>
 :root{--bg:#030303;--fg:#f7f7f7}*{box-sizing:border-box}html,body{margin:0;min-height:100%;width:100%;background:var(--bg);color:var(--fg);font-family:"Trebuchet MS",Arial,sans-serif}body{min-height:100svh;overflow:hidden}button,input{font:inherit}button:focus-visible,input:focus-visible{outline:2px solid white;outline-offset:5px}
 .scene{position:relative;isolation:isolate;width:100%;min-height:100svh;overflow:hidden;display:grid;place-items:center;background:radial-gradient(ellipse at 50% 44%,#151515 0%,#090909 31%,#030303 73%)}
+/* Lightweight pointer glow: one transform-only layer, enabled only for mouse/trackpad. */
+.pointer-glow{position:absolute;z-index:-1;left:0;top:0;width:360px;height:360px;border-radius:50%;pointer-events:none;opacity:0;transform:translate3d(var(--glow-x,-500px),var(--glow-y,-500px),0) translate(-50%,-50%);background:radial-gradient(circle, #ffffff0c 0%, #ffffff06 30%, transparent 70%);will-change:transform;transition:opacity .25s ease}
+.scene.has-pointer .pointer-glow{opacity:1}
 .ambient{position:absolute;inset:0;z-index:-2;overflow:hidden;pointer-events:none}.haze{position:absolute;width:45vw;height:45vw;border-radius:50%;background:#fff;filter:blur(120px);opacity:.035;animation:hazeDrift 16s ease-in-out infinite alternate}.haze.a{left:-20%;top:-30%}.haze.b{right:-20%;bottom:-35%;animation-delay:-8s}.stars{position:absolute;inset:0}.star{position:absolute;width:var(--size);height:var(--size);left:var(--x);top:var(--y);border-radius:50%;background:white;opacity:.25;box-shadow:0 0 9px 2px #fff2;animation:twinkle var(--duration) ease-in-out var(--delay) infinite alternate}
 .trail{position:absolute;width:125vw;height:56vw;min-height:300px;border:1px solid #ffffff16;border-radius:50%;left:-30%;top:-9%;transform:rotate(-23deg);animation:trailFloat 18s ease-in-out infinite alternate}.trail:after{content:"";position:absolute;width:32%;height:1px;left:22%;top:-1px;background:linear-gradient(90deg,transparent,#fff,transparent);box-shadow:0 0 10px #fff;animation:lightTravel 8s linear infinite}.trail.two{width:125vw;height:43vw;left:-15%;top:43%;transform:rotate(19deg);animation-duration:23s;animation-direction:alternate-reverse}.trail.two:after{animation-delay:-4s;animation-duration:11s}
 .crystal{position:absolute;width:var(--w);aspect-ratio:1;left:var(--x);top:var(--y);opacity:var(--opacity);filter:drop-shadow(0 0 14px #ffffff15);animation:crystalDrift var(--duration) ease-in-out var(--delay) infinite alternate;transform-origin:center}.crystal svg{display:block;width:100%;height:100%;overflow:visible}.crystal polygon,.crystal path{stroke:#e7e7e7;stroke-width:.65;stroke-linejoin:round}.facet1{fill:url(#facetA)}.facet2{fill:url(#facetB)}.facet3{fill:url(#facetC)}.facet4{fill:url(#facetD)}.edge{fill:none;stroke:#fff;stroke-width:.7;opacity:.75}.crystal.small{filter:drop-shadow(0 0 6px #fff3)}
 .navbar{position:absolute;z-index:5;top:28px;left:50%;transform:translateX(-50%);display:flex;align-items:center;justify-content:center;gap:clamp(15px,3vw,38px);width:max-content;max-width:94vw;animation:navReveal 1s .4s both}.navbar button{position:relative;padding:8px 0;color:#888;background:transparent;border:0;font-family:"Space Grotesk",sans-serif;font-size:12px;font-weight:500;letter-spacing:.5px;cursor:pointer;transition:color .3s ease}.navbar button:after{content:"";position:absolute;bottom:0;left:50%;width:0;height:1px;background:white;transform:translateX(-50%);transition:width .3s ease}.navbar button:hover{color:white}.navbar button:hover:after{width:100%}
-.center{position:relative;z-index:2;width:min(700px,88vw);display:flex;flex-direction:column;align-items:center;transform:translateY(-4vh)}.logo{display:flex;justify-content:center;margin:0 0 43px;padding-left:.26em;font-family:"Arial",sans-serif;font-size:clamp(46px,8vw,82px);line-height:1;font-weight:500;letter-spacing:.26em;text-shadow:0 0 9px #fff7,0 0 32px #fff3;animation:logoArrival 1.5s cubic-bezier(.16,1,.3,1) both;user-select:none}.logo span{display:inline-block;animation:letterArrival 1.2s cubic-bezier(.16,1,.3,1) both}.logo span:nth-child(1){animation-delay:.08s}.logo span:nth-child(2){animation-delay:.15s}.logo span:nth-child(3){animation-delay:.22s}.logo span:nth-child(4){animation-delay:.29s}.logo span:nth-child(5){animation-delay:.36s}
+.center{position:relative;z-index:2;width:min(700px,88vw);display:flex;flex-direction:column;align-items:center;transform:translateY(-4vh)}.logo{display:flex;justify-content:center;margin:0 0 43px;padding-left:.26em;font-family:"Arial",sans-serif;font-size:clamp(46px,8vw,82px);line-height:1;font-weight:500;letter-spacing:.26em;text-shadow:0 0 9px #fff7,0 0 32px #fff3;animation:logoArrival 1.5s cubic-bezier(.16,1,.3,1) both;user-select:none}.logo span{display:inline-block;animation:letterArrival 1.2s cubic-bezier(.16,1,.3,1) both}.logo span:nth-child(1){animation-delay:.08s}.logo span:nth-child(2){animation-delay:.15s}.logo span:nth-child(3){animation-delay:.22s}.logo span:nth-child(4){animation-delay:.29s}.logo span:nth-child(5){animation-delay:.36s}.logo:hover span{ text-shadow:0 0 18px #fff9; }.logo:hover span:nth-child(odd){transform:translateY(-2px)}.logo:hover span:nth-child(even){transform:translateY(2px)}
 .search{position:relative;width:min(670px,100%);height:82px;display:flex;align-items:center;border:1px solid #dedede;border-radius:100px;background:#050505b8;box-shadow:0 0 0 1px #ffffff08,0 0 28px #ffffff08,inset 0 0 25px #ffffff03;backdrop-filter:blur(12px);animation:searchArrival 1.2s .2s cubic-bezier(.16,1,.3,1) both;transition:box-shadow .45s ease,background .45s ease,border-color .45s ease,transform .45s cubic-bezier(.2,.8,.2,1)}.search:focus-within{border-color:white;background:#101010e8;box-shadow:0 0 0 5px #ffffff07,0 0 45px #ffffff16,inset 0 0 20px #ffffff05;transform:scale(1.012)}.search-icon{width:22px;height:22px;margin-left:29px;flex:0 0 auto;opacity:.95;transition:transform .3s ease}.search:focus-within .search-icon{transform:scale(1.1)}#search{width:100%;height:100%;padding:0 15px 0 27px;min-width:0;border:0;outline:0;color:white;background:transparent;font-size:16px}#search::placeholder{color:#929292}.go{flex:0 0 auto;width:54px;height:54px;margin-right:9px;display:grid;place-items:center;border-radius:50%;border:1px solid #ffffff22;background:#ffffff0b;cursor:pointer;transition:background .3s ease,transform .35s cubic-bezier(.2,.8,.2,1),border-color .3s ease}.go svg{width:23px;height:23px;transition:transform .3s ease}.go:hover{background:white;border-color:white;transform:rotate(-4deg)}.go:hover svg{stroke:#050505;transform:translateX(2px)}.go:active{transform:scale(.9)}
 .feedback{position:absolute;top:calc(100% + 18px);left:0;width:100%;color:#aaa;text-align:center;font-size:12px;line-height:1.7;opacity:0;transform:translateY(-5px);pointer-events:none;transition:opacity .3s ease,transform .3s ease}.feedback.show{opacity:1;transform:translateY(0)}
 @keyframes logoArrival{from{opacity:0;filter:blur(14px);transform:translateY(20px)}to{opacity:1;filter:blur(0);transform:translateY(0)}}@keyframes letterArrival{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}@keyframes searchArrival{from{opacity:0;filter:blur(7px);transform:translateY(17px) scale(.97)}to{opacity:1;filter:blur(0);transform:translateY(0) scale(1)}}@keyframes navReveal{from{opacity:0;translate:0 -8px}to{opacity:1;translate:0 0}}@keyframes twinkle{from{opacity:.08;transform:scale(.65)}to{opacity:.8;transform:scale(1.5)}}@keyframes hazeDrift{from{transform:translate(-5%,-4%) scale(.8)}to{transform:translate(14%,12%) scale(1.15)}}@keyframes trailFloat{from{margin-left:-1.5%;margin-top:-1%}to{margin-left:2%;margin-top:2%}}@keyframes lightTravel{from{transform:translateX(-60vw);opacity:0}15%{opacity:.8}85%{opacity:.8}to{transform:translateX(100vw);opacity:0}}@keyframes crystalDrift{from{translate:-8px -10px;rotate:-5deg}to{translate:12px 15px;rotate:6deg}}
@@ -20,11 +23,11 @@
 </style>
 </head>
 <body>
-<main class="scene">
+<main class="scene" id="scene">
 <nav class="navbar" aria-label="Main navigation">
 <button type="button" data-section="Games">Games</button><button type="button" data-section="Apps">Apps</button><button type="button" data-section="Chat">Chat</button><button type="button" data-section="Settings">Settings</button><button type="button" data-section="Account">Account</button><button type="button" data-section="AI">AI</button>
 </nav>
-<div class="ambient" aria-hidden="true">
+<div class="pointer-glow" aria-hidden="true"></div>\n<div class="ambient" aria-hidden="true">
 <div class="haze a"></div><div class="haze b"></div><div class="trail"></div><div class="trail two"></div><div class="stars" id="stars"></div>
 <svg width="0" height="0" style="position:absolute"><defs>
 <linearGradient id="facetA" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".8"/><stop offset="1" stop-color="#fff" stop-opacity=".02"/></linearGradient>
@@ -50,6 +53,23 @@
 </section>
 </main>
 <script>
+const scene=document.getElementById("scene");
+const glow=document.querySelector(".pointer-glow");
+const finePointer=window.matchMedia("(hover: hover) and (pointer: fine)");
+const reducedMotion=window.matchMedia("(prefers-reduced-motion: reduce)");
+if(finePointer.matches&&!reducedMotion.matches){
+  let glowFrame=0,lastX=-500,lastY=-500;
+  scene.addEventListener("pointermove",event=>{
+    lastX=event.clientX;lastY=event.clientY;
+    if(!glowFrame)glowFrame=requestAnimationFrame(()=>{
+      glow.style.setProperty("--glow-x",lastX+"px");
+      glow.style.setProperty("--glow-y",lastY+"px");
+      scene.classList.add("has-pointer");
+      glowFrame=0;
+    });
+  },{passive:true});
+  scene.addEventListener("pointerleave",()=>scene.classList.remove("has-pointer"),{passive:true});
+}
 const stars=document.getElementById("stars");
 for(let i=0;i<48;i++){const star=document.createElement("span");star.className="star";star.style.setProperty("--x",Math.random()*100+"%");star.style.setProperty("--y",Math.random()*100+"%");star.style.setProperty("--size",(Math.random()*2+1)+"px");star.style.setProperty("--duration",(2.5+Math.random()*6)+"s");star.style.setProperty("--delay",(-Math.random()*8)+"s");stars.appendChild(star)}
 const form=document.getElementById("searchForm"),input=document.getElementById("search"),feedback=document.getElementById("feedback");
