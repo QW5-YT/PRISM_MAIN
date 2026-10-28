@@ -87,6 +87,15 @@ body.stars-off .stars{display:none}
 .browser-home-note{margin-top:18px;color:#777;font-size:10px;letter-spacing:.04em}
 .browse-page{margin-top:94px}
 @media(max-width:620px){.navbar.browser-chrome{top:8px;width:calc(100% - 16px);height:54px;gap:7px;padding:7px}.browser-chrome .brand{font-size:0;gap:0;margin:0}.browser-chrome .brand-mark{width:22px;height:26px}.browser-controls{gap:3px}.browser-controls button,.browser-newtab{width:30px;height:32px}.browser-address-form{height:36px;gap:6px;padding-left:8px}.browser-address-form input{font-size:11px}.browser-newtab{font-size:19px}}
+
+.games-page{width:min(900px,90vw);margin:112px auto 30px}
+.internal-game-link{display:flex;align-items:center;gap:15px;max-width:520px;margin:28px auto;padding:17px;border:1px solid #ffffff20;border-radius:16px;background:#09090cc9;color:#eee;text-decoration:none;backdrop-filter:blur(15px);transition:transform .2s,border-color .2s}
+.internal-game-link:hover{transform:translateY(-2px);border-color:#ffffff55}
+.internal-game-icon{display:grid;place-items:center;width:48px;height:48px;border-radius:13px;background:#ffffff0c;font-size:28px}
+.internal-game-link strong,.internal-game-link small{display:block}
+.internal-game-link strong{font-size:14px;font-weight:550}
+.internal-game-link small{margin-top:5px;color:#888;font-size:11px}
+.internal-game-arrow{margin-left:auto;color:#888;font-size:18px}
 </style>
 </head>
 <body>
@@ -142,7 +151,8 @@ function routeInternal(route,push=true){
  if(section==="Home"){if(center){center.hidden=false;center.classList.add("new-tab-center")}if(page)page.hidden=true;return true}
  if(!page){page=document.createElement("section");page.id="pageView";page.className="page-view";page.setAttribute("aria-live","polite");page.hidden=true;document.querySelector(".scene").appendChild(page)}
  if(section==="Settings"){page.className="page-view settings-page";page.innerHTML=settingsMarkup();applyPreferences()}
- else{page.className="page-view";page.innerHTML='<p class="page-kicker">PRISM / INTERNAL</p><h1 class="page-title">'+section+'</h1><div class="page-rule"></div><div class="empty-state"><div class="empty-mark" aria-hidden="true">✧</div><h2>'+({Games:"Your games live here",Apps:"Your apps live here",Chat:"Chat is coming soon",Account:"Your account"})[section]+'</h2><p>This is a PRISM internal page. Use the address bar to navigate anywhere.</p></div>'}
+ else if(section==="Games"){page.className="page-view games-page";page.innerHTML='<p class="page-kicker">PRISM / ARCADE</p><h1 class="page-title">Games</h1><div class="page-rule"></div><a class="internal-game-link" href="/games/trap-the-cat.html"><span class="internal-game-icon">◉</span><span><strong>Trap the Cat</strong><small>Outsmart the cat and block its escape.</small></span><span class="internal-game-arrow">↗</span></a>'}
+ else{page.className="page-view";page.innerHTML='<p class="page-kicker">PRISM / INTERNAL</p><h1 class="page-title">'+section+'</h1><div class="page-rule"></div><div class="empty-state"><div class="empty-mark" aria-hidden="true">✧</div><h2>'+({Apps:"Your apps live here",Chat:"Chat is coming soon",Account:"Your account",AI:"AI is not enabled yet"})[section]+'</h2><p>This is a PRISM internal page. Use the address bar to navigate anywhere.</p></div>'}
  if(center)center.hidden=true;page.hidden=false;return true
 }
 function browserNavigate(value,push=true){
