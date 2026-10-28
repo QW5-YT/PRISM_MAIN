@@ -63,13 +63,39 @@ body.stars-off .stars{display:none}
 .browse-frame{display:block;width:100%;height:100%;border:0;background:#fff}
 .browse-foot{margin:11px 2px 0;color:#666;font-size:10px;line-height:1.6}
 @media(max-width:650px){.browse-page{width:94vw;margin-top:78px}.browse-head{align-items:flex-start;flex-direction:column}.browse-toolbar{gap:6px;padding:8px}.browse-address{padding:0 10px}.browse-go,.browse-stop{padding:0 11px}.browse-frame-wrap{height:58vh;min-height:300px}}
+
+/* PRISM browser-first chrome */
+.navbar.browser-chrome{position:fixed;top:12px;left:50%;transform:translateX(-50%);width:min(1180px,calc(100% - 28px));height:58px;display:flex;align-items:center;gap:16px;padding:8px 13px;border:1px solid #ffffff1c;border-radius:17px;background:rgba(7,7,10,.68);backdrop-filter:blur(22px);z-index:20;box-shadow:0 10px 42px #0004}
+.browser-chrome .brand{flex-shrink:0;margin:0 4px 0 2px;gap:8px;font-size:12px;letter-spacing:.2em}
+.browser-chrome .brand-mark{width:20px;height:25px}
+.browser-controls{display:flex;align-items:center;gap:5px}
+.browser-controls button,.browser-newtab{width:34px;height:34px;display:grid;place-items:center;border:1px solid #ffffff17;border-radius:10px;background:#ffffff08;color:#ddd;font-size:22px;line-height:1;cursor:pointer}
+.browser-controls button:hover,.browser-newtab:hover{background:#ffffff17;color:#fff}
+.browser-address-form{height:38px;display:flex;align-items:center;gap:10px;flex:1;min-width:0;padding:0 9px 0 13px;border:1px solid #ffffff20;border-radius:12px;background:#0008}
+.browser-address-form:focus-within{border-color:#ffffff55;box-shadow:0 0 0 3px #ffffff08}
+.browser-lock{color:#aaa;font-size:15px}
+.browser-address-form input{width:100%;min-width:0;border:0;outline:0;background:transparent;color:#eaeaea;font-size:12px}
+.browser-address-form button{width:28px;height:28px;border:0;border-radius:8px;background:#ffffff10;color:#ddd;cursor:pointer}
+.browser-newtab{font-size:21px}
+.page-view{position:relative;z-index:2}
+.center.new-tab-center{top:48%;width:min(580px,90vw)}
+.new-tab-center .logo{font-size:clamp(54px,8vw,88px);margin-bottom:24px}
+.new-tab-center .search{max-width:570px}
+.browser-home-links{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;margin-top:20px}
+.browser-home-links button{padding:9px 13px;border:1px solid #ffffff1a;border-radius:11px;background:#08080ba8;color:#aaa;font-size:11px;cursor:pointer;backdrop-filter:blur(10px)}
+.browser-home-links button:hover{border-color:#ffffff45;color:#fff;background:#ffffff0c}
+.browser-home-note{margin-top:18px;color:#777;font-size:10px;letter-spacing:.04em}
+.browse-page{margin-top:94px}
+@media(max-width:620px){.navbar.browser-chrome{top:8px;width:calc(100% - 16px);height:54px;gap:7px;padding:7px}.browser-chrome .brand{font-size:0;gap:0;margin:0}.browser-chrome .brand-mark{width:22px;height:26px}.browser-controls{gap:3px}.browser-controls button,.browser-newtab{width:30px;height:32px}.browser-address-form{height:36px;gap:6px;padding-left:8px}.browser-address-form input{font-size:11px}.browser-newtab{font-size:19px}}
 </style>
 </head>
 <body>
 <main class="scene" id="scene">
-<nav class="navbar" aria-label="Main navigation">
+<nav class="navbar browser-chrome" aria-label="PRISM browser controls">
 <div class="brand" aria-label="PRISM"><svg class="brand-mark" viewBox="0 0 32 38" fill="none" aria-hidden="true"><path d="M16 1.5 30 27 16 36.5 2 27Z" stroke="currentColor" stroke-width="1.4"/><path d="M16 1.5V36.5M2 27l14-9 14 9M16 18 9.2 14 16 1.5 22.8 14Z" stroke="currentColor" stroke-width="1.1" fill="currentColor" fill-opacity=".13"/></svg><span>PRISM</span></div>
-<button type="button" data-section="Home" aria-current="page" class="active"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1Z"/></svg>Home</button><button type="button" data-section="Games"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M7 8h10a4 4 0 0 1 3.8 5.3l-1.2 3.5a2 2 0 0 1-3.2.9L13.8 15h-3.6l-2.6 2.7a2 2 0 0 1-3.2-.9l-1.2-3.5A4 4 0 0 1 7 8Z"/><path d="M7 10v4m-2-2h4m7-1h.01M17 13h.01"/></svg>Games</button><button type="button" data-section="Apps"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Apps</button><button type="button" data-section="Chat"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5H6l-3 2v-6.5A7.5 7.5 0 1 1 20 11.5Z"/><path d="M8 11h.01M12 11h.01M16 11h.01"/></svg>Chat</button><button type="button" data-section="Settings"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="m19.4 15 .1.1 1.4 1.1-1.4 2.4-1.7-.6a8 8 0 0 1-1.7 1l-.3 1.8h-2.8l-.3-1.8a8 8 0 0 1-1.7-1l-1.7.6-1.4-2.4 1.4-1.1a7 7 0 0 1 0-2l-1.4-1.1 1.4-2.4 1.7.6a8 8 0 0 1 1.7-1l.3-1.8h2.8l.3 1.8a8 8 0 0 1 1.7 1l1.7-.6 1.4 2.4-1.4 1.1a7 7 0 0 1 0 2Z" transform="translate(-1 -1) scale(1.08)"/></svg>Settings</button><button type="button" data-section="Account"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>Account</button><button type="button" data-section="Browse"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="11" cy="11" r="7.5"/><path d="m16.5 16.5 4 4M8.5 11h5M11 8.5v5"/></svg>Browse</button>
+<div class="browser-controls"><button type="button" id="browserBack" aria-label="Go back" title="Go back">‹</button><button type="button" id="browserReload" aria-label="Reload page" title="Reload">↻</button></div>
+<form class="browser-address-form" id="browserAddressForm" role="search"><span class="browser-lock" aria-hidden="true">◇</span><input id="browserAddress" type="text" value="prism://new-tab" aria-label="Address bar" autocomplete="off" spellcheck="false"><button type="submit" aria-label="Go to address">↵</button></form>
+<button type="button" class="browser-newtab" id="browserNewTab" title="New tab" aria-label="New tab">+</button>
 </nav>
 <div class="ambient" aria-hidden="true">
 <div class="haze a"></div><div class="haze b"></div><div class="trail"></div><div class="trail two"></div><div class="stars" id="stars"></div>
@@ -86,7 +112,7 @@ body.stars-off .stars{display:none}
 <div class="crystal small" style="--w:30px;--x:74%;--y:17%;--opacity:.7;--duration:7s;--delay:-1s"><svg viewBox="0 0 100 100"><polygon class="facet1" points="50,4 96,87 7,77"/><polygon class="facet3" points="50,4 7,77 48,65"/><polygon class="facet2" points="50,4 48,65 96,87"/></svg></div>
 <div class="crystal small" style="--w:25px;--x:32%;--y:76%;--opacity:.5;--duration:9s;--delay:-5s"><svg viewBox="0 0 100 100"><polygon class="facet1" points="50,3 98,92 6,77"/><polygon class="facet3" points="50,3 6,77 48,61"/><polygon class="facet2" points="50,3 48,61 98,92"/></svg></div>
 </div>
-<section class="center" aria-label="PRISM home">
+<section class="center new-tab-center" aria-label="PRISM new tab">
 <h1 class="logo" aria-label="PRISM"><span>P</span><span>R</span><span>I</span><span>S</span><span>M</span></h1>
 <form class="search" id="searchForm" role="search">
 <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.1" stroke-linecap="round" aria-hidden="true"><circle cx="10.8" cy="10.8" r="7.1"/><path d="m16 16 4.2 4.2"/></svg>
@@ -94,78 +120,77 @@ body.stars-off .stars{display:none}
 <button class="go" type="submit" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
 </form>
 <div class="feedback" id="feedback" aria-live="polite"></div>
+<div class="browser-home-links" aria-label="PRISM pages"><button type="button" data-prism="prism://games">🎮 Games</button><button type="button" data-prism="prism://apps">▦ Apps</button><button type="button" data-prism="prism://chat">☏ Chat</button><button type="button" data-prism="prism://account">◉ Account</button><button type="button" data-prism="prism://settings">⚙ Settings</button></div>
+<p class="browser-home-note">PRISM BROWSER · TYPE A URL OR SEARCH THE WEB</p>
 </section>
 </main>
 <script>
+
+const addressForm=document.getElementById("browserAddressForm");
+const addressInput=document.getElementById("browserAddress");
+const internalRoutes={"new-tab":"Home","home":"Home","games":"Games","apps":"Apps","chat":"Chat","settings":"Settings","account":"Account","ai":"AI"};
+let browserHistory=["prism://new-tab"],browserHistoryIndex=0;
+function setAddress(value){if(addressInput)addressInput.value=value}
+function routeInternal(route,push=true){
+ const clean=route.toLowerCase().replace(/^prism:\/\//,"").split(/[/?#]/)[0]||"new-tab";
+ const section=internalRoutes[clean];
+ if(!section)return false;
+ if(push){browserHistory=browserHistory.slice(0,browserHistoryIndex+1);browserHistory.push("prism://"+clean);browserHistoryIndex=browserHistory.length-1}
+ setAddress("prism://"+clean);
+ const center=document.querySelector(".center");
+ let page=document.getElementById("pageView");
+ if(section==="Home"){if(center){center.hidden=false;center.classList.add("new-tab-center")}if(page)page.hidden=true;return true}
+ if(!page){page=document.createElement("section");page.id="pageView";page.className="page-view";page.setAttribute("aria-live","polite");page.hidden=true;document.querySelector(".scene").appendChild(page)}
+ if(section==="Settings"){page.className="page-view settings-page";page.innerHTML=settingsMarkup();applyPreferences()}
+ else{page.className="page-view";page.innerHTML='<p class="page-kicker">PRISM / INTERNAL</p><h1 class="page-title">'+section+'</h1><div class="page-rule"></div><div class="empty-state"><div class="empty-mark" aria-hidden="true">✧</div><h2>'+({Games:"Your games live here",Apps:"Your apps live here",Chat:"Chat is coming soon",Account:"Your account"})[section]+'</h2><p>This is a PRISM internal page. Use the address bar to navigate anywhere.</p></div>'}
+ if(center)center.hidden=true;page.hidden=false;return true
+}
+function browserNavigate(value,push=true){
+ const raw=(value||"").trim();if(!raw)return;
+ if(/^prism:\/\//i.test(raw)){if(routeInternal(raw,push))return;setAddress(raw);const status=document.getElementById("browseStatus");if(status)status.textContent="Unknown PRISM page. Try prism://new-tab, prism://games, prism://apps, prism://chat, prism://settings, or prism://account.";return}
+ const queryLike=/\s/.test(raw)&&!/^https?:\/\//i.test(raw);
+ let target=queryLike?"https://www.google.com/search?q="+encodeURIComponent(raw):(/^[a-z][a-z\d+.-]*:/i.test(raw)?raw:"https://"+raw);
+ if(!/^https?:/i.test(target)){target="https://www.google.com/search?q="+encodeURIComponent(raw)}
+ setAddress(target);
+ if(push){browserHistory=browserHistory.slice(0,browserHistoryIndex+1);browserHistory.push(target);browserHistoryIndex=browserHistory.length-1}
+ const center=document.querySelector(".center");if(center)center.hidden=true;
+ let page=document.getElementById("pageView");if(!page){page=document.createElement("section");page.id="pageView";page.className="page-view";page.hidden=true;document.querySelector(".scene").appendChild(page)}
+ page.className="page-view browse-page";page.innerHTML=window.prismBrowseMarkup();page.hidden=false;
+ if(window.prismBrowseOpen)window.prismBrowseOpen(target);
+}
+addressForm.addEventListener("submit",e=>{e.preventDefault();browserNavigate(addressInput.value)});
+document.getElementById("browserNewTab").addEventListener("click",()=>browserNavigate("prism://new-tab"));
+document.getElementById("browserReload").addEventListener("click",()=>{const current=browserHistory[browserHistoryIndex]||"prism://new-tab";if(current.startsWith("prism://"))browserNavigate(current,false);else if(window.prismBrowseOpen)window.prismBrowseOpen(current)});
+document.getElementById("browserBack").addEventListener("click",()=>{if(browserHistoryIndex>0){browserHistoryIndex--;const previous=browserHistory[browserHistoryIndex];if(previous.startsWith("prism://"))routeInternal(previous,false);else{setAddress(previous);const center=document.querySelector(".center");if(center)center.hidden=true;let page=document.getElementById("pageView");if(!page){page=document.createElement("section");page.id="pageView";page.className="page-view";document.querySelector(".scene").appendChild(page)}page.className="page-view browse-page";page.innerHTML=window.prismBrowseMarkup();page.hidden=false;if(window.prismBrowseOpen)window.prismBrowseOpen(previous)}}});
+document.addEventListener("click",e=>{const shortcut=e.target.closest("[data-prism]");if(shortcut)browserNavigate(shortcut.dataset.prism)});
 const stars=document.getElementById("stars");
 for(let i=0;i<48;i++){const star=document.createElement("span");star.className="star";star.style.setProperty("--x",Math.random()*100+"%");star.style.setProperty("--y",Math.random()*100+"%");star.style.setProperty("--size",(Math.random()*2+1)+"px");star.style.setProperty("--duration",(2.5+Math.random()*6)+"s");star.style.setProperty("--delay",(-Math.random()*8)+"s");stars.appendChild(star)}
 const form=document.getElementById("searchForm"),input=document.getElementById("search"),feedback=document.getElementById("feedback");
-form.addEventListener("submit",event=>{event.preventDefault();const query=input.value.trim().toLowerCase();if(!query){input.focus();return}if(/trap.?the.?cat|chat.?trap|cat trap/.test(query)){window.location.href="games/trap-the-cat.html";return}feedback.textContent='No offline game found. Try “Trap the Cat”.';feedback.classList.add("show")});
+form.addEventListener("submit",event=>{event.preventDefault();const query=input.value.trim().toLowerCase();if(!query){input.focus();return}browserNavigate(query)});
 input.addEventListener("input",()=>feedback.classList.remove("show"));
 document.addEventListener("keydown",event=>{const target=event.target;const typing=target instanceof HTMLElement&&(target.matches("input, textarea, select")||target.isContentEditable);if(event.key==="/"&&!typing&&preferences.shortcut){event.preventDefault();input.focus()}if(event.key==="Escape"){input.value="";feedback.classList.remove("show");input.blur()}});
-const navButtons=[...document.querySelectorAll("[data-section]")];
+
+const navButtons=[];
 const center=document.querySelector(".center");
 const preferenceDefaults={animations:true,stars:true,glow:true,accent:"white",shortcut:true};
 let preferences={...preferenceDefaults};
 try{preferences={...preferenceDefaults,...JSON.parse(localStorage.getItem("prism-preferences")||"{}")}}catch{}
 function savePreferences(){try{localStorage.setItem("prism-preferences",JSON.stringify(preferences))}catch{}}
 function applyPreferences(){
-  document.body.classList.toggle("motion-off",!preferences.animations);
-  document.body.classList.toggle("stars-off",!preferences.stars);
-  document.body.classList.toggle("low-glow",!preferences.glow);
-  const accents={white:"#f4f4f4",ice:"#9cecff",violet:"#c7a6ff",lime:"#b9f77b"};
-  document.documentElement.style.setProperty("--accent",accents[preferences.accent]||accents.white);
-  document.querySelectorAll(".accent-choice").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.accent===preferences.accent)));
-  document.querySelectorAll("[data-pref]").forEach(b=>b.setAttribute("aria-pressed",String(!!preferences[b.dataset.pref])));
+ document.body.classList.toggle("motion-off",!preferences.animations);document.body.classList.toggle("stars-off",!preferences.stars);document.body.classList.toggle("low-glow",!preferences.glow);
+ const accents={white:"#f4f4f4",ice:"#9cecff",violet:"#c7a6ff",lime:"#b9f77b"};document.documentElement.style.setProperty("--accent",accents[preferences.accent]||accents.white);
+ document.querySelectorAll(".accent-choice").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.accent===preferences.accent)));document.querySelectorAll("[data-pref]").forEach(b=>b.setAttribute("aria-pressed",String(!!preferences[b.dataset.pref])));
 }
 function settingsMarkup(){return '<p class="page-kicker">PERSONALIZE YOUR EXPERIENCE</p><h1 class="page-title">Settings</h1><div class="page-rule"></div><div class="settings-grid"><section class="setting-card"><div class="setting-row"><div><h2>Ambient animations</h2><p>Pause the moving crystals, shimmer, and background effects.</p></div><button class="setting-toggle" type="button" data-pref="animations" aria-label="Toggle ambient animations" aria-pressed="true"></button></div></section><section class="setting-card"><div class="setting-row"><div><h2>Starfield</h2><p>Show or hide the tiny twinkling stars in the background.</p></div><button class="setting-toggle" type="button" data-pref="stars" aria-label="Toggle starfield" aria-pressed="true"></button></div></section><section class="setting-card"><div class="setting-row"><div><h2>Glow effects</h2><p>Turn down the bright glow and haze for a calmer look.</p></div><button class="setting-toggle" type="button" data-pref="glow" aria-label="Toggle glow effects" aria-pressed="true"></button></div></section><section class="setting-card"><h2>Accent color</h2><p>Choose the highlight color used around the interface.</p><div class="accent-options"><button class="accent-choice" style="--swatch:#f4f4f4" data-accent="white" aria-label="White accent" aria-pressed="true"></button><button class="accent-choice" style="--swatch:#9cecff" data-accent="ice" aria-label="Ice blue accent" aria-pressed="false"></button><button class="accent-choice" style="--swatch:#c7a6ff" data-accent="violet" aria-label="Violet accent" aria-pressed="false"></button><button class="accent-choice" style="--swatch:#b9f77b" data-accent="lime" aria-label="Lime accent" aria-pressed="false"></button></div></section><section class="setting-card"><div class="setting-row"><div><h2>Quick search shortcut</h2><p>Use the / key to jump straight to the game search.</p></div><button class="setting-toggle" type="button" data-pref="shortcut" aria-label="Toggle quick search shortcut" aria-pressed="true"></button></div></section><section class="setting-card"><h2>Reset preferences</h2><p>Restore the default PRISM appearance and behavior.</p><button class="setting-action" type="button" data-reset-settings>Reset to defaults</button></section></div><p class="setting-note">Your preferences are saved on this device in this browser.</p>'}
 applyPreferences();
 document.addEventListener("click",event=>{
-  if(event.target.closest("[data-ai-new-chat]")){aiConversation=[];const box=document.getElementById("aiMessages");if(box)box.innerHTML='<div class="ai-message assistant">New conversation started. What would you like to explore?</div>';}
-
-  const toggle=event.target.closest("[data-pref]");
-  const accent=event.target.closest("[data-accent]");
-  const reset=event.target.closest("[data-reset-settings]");
-  if(toggle){const key=toggle.dataset.pref;preferences[key]=!preferences[key];savePreferences();applyPreferences()}
-  if(accent){preferences.accent=accent.dataset.accent;savePreferences();applyPreferences()}
-  if(reset){preferences={...preferenceDefaults};savePreferences();applyPreferences()}
+ const toggle=event.target.closest("[data-pref]"),accent=event.target.closest("[data-accent]"),reset=event.target.closest("[data-reset-settings]");
+ if(toggle){preferences[toggle.dataset.pref]=!preferences[toggle.dataset.pref];savePreferences();applyPreferences()}
+ if(accent){preferences.accent=accent.dataset.accent;savePreferences();applyPreferences()}
+ if(reset){preferences={...preferenceDefaults};savePreferences();applyPreferences()}
 });
-navButtons.forEach(button=>button.addEventListener("click",()=>{
-  const section=button.dataset.section;
-  let page=document.getElementById("pageView");
-  if(section==="Home"){
-    center.hidden=false;
-    if(page) page.hidden=true;
-  }else{
-    if(!page){
-      page=document.createElement("section");
-      page.id="pageView";
-      page.className="page-view";
-      page.setAttribute("aria-live","polite");
-      page.hidden=true;
-      document.querySelector(".scene").appendChild(page);
-    }
-    if(section==="Settings"){
-      page.className="page-view settings-page";
-      page.innerHTML=settingsMarkup();
-      applyPreferences();
-    }else if(section==="Browse"){
-      page.className="page-view browse-page";
-      page.innerHTML=window.prismBrowseMarkup();
-    }else{
-      page.className="page-view";
-      page.innerHTML='<p class="page-kicker">'+section.toUpperCase()+'</p><h1 class="page-title">'+section+'</h1><div class="page-rule"></div><div class="empty-state"><div class="empty-mark" aria-hidden="true">—</div><h2>Page empty for now</h2><p>This section is still being built. Check back later for updates.</p></div>';
-    }
-    center.hidden=true;
-    page.hidden=false;
-  }
-  navButtons.forEach(tab=>{
-    const selected=tab===button;
-    tab.classList.toggle("active",selected);
-    if(selected) tab.setAttribute("aria-current","page");
-    else tab.removeAttribute("aria-current");
-  });
-}));
+document.addEventListener("keydown",event=>{const target=event.target;const typing=target instanceof HTMLElement&&(target.matches("input, textarea, select")||target.isContentEditable);if(event.key==="/"&&!typing&&preferences.shortcut){event.preventDefault();addressInput.focus()}});
+routeInternal("prism://new-tab",false);
 </script>
 <script src="/js/browse.js"></script>
 </body>
