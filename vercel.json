@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "server.js",
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": [
+          "index.html",
+          "games/**",
+          "public/**",
+          "node_modules/@mercuryworkshop/scramjet/**",
+          "node_modules/@mercuryworkshop/scramjet-controller/**",
+          "node_modules/@mercuryworkshop/scramjet-utils/**",
+          "node_modules/@mercuryworkshop/bare-transport/**",
+          "node_modules/@tomphttp/bare-server-node/**"
+        ]
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "server.js"
+    }
+  ]
+}
