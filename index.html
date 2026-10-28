@@ -59,9 +59,18 @@ form.addEventListener("submit",event=>{event.preventDefault();const query=input.
 input.addEventListener("input",()=>feedback.classList.remove("show"));
 document.addEventListener("keydown",event=>{const target=event.target;const typing=target instanceof HTMLElement&&(target.matches("input, textarea, select")||target.isContentEditable);if(event.key==="/"&&!typing){event.preventDefault();input.focus()}if(event.key==="Escape"){input.value="";feedback.classList.remove("show");input.blur()}});
 document.querySelectorAll("[data-section]").forEach(button=>button.addEventListener("click",()=>{
-  document.querySelector(".center").hidden=true;
-  document.querySelector(".ambient").hidden=true;
-  document.querySelector(".scene").style.background="#030303";
+  const center=document.querySelector(".center");
+  let emptyPage=document.getElementById("emptyPage");
+  if(!emptyPage){
+    emptyPage=document.createElement("section");
+    emptyPage.id="emptyPage";
+    emptyPage.setAttribute("aria-live","polite");
+    emptyPage.style.cssText="position:relative;z-index:2;text-align:center;color:#aaa;font-size:clamp(16px,2vw,20px);letter-spacing:.5px;animation:searchArrival .6s ease both";
+    emptyPage.textContent="Page empty for now";
+    document.querySelector(".scene").appendChild(emptyPage);
+  }
+  center.hidden=true;
+  emptyPage.hidden=false;
   document.querySelectorAll("[data-section]").forEach(tab=>tab.setAttribute("aria-current",tab===button?"page":"false"));
 }));
 </script>
