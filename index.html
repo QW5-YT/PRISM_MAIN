@@ -21,6 +21,31 @@
 .feedback{position:absolute;top:calc(100% + 18px);left:0;width:100%;color:#aaa;text-align:center;font-size:12px;line-height:1.7;opacity:0;transform:translateY(-5px);pointer-events:none;transition:opacity .3s ease,transform .3s ease}.feedback.show{opacity:1;transform:translateY(0)}
 @keyframes backdropSweep{0%,12%{transform:rotate(-18deg) translate3d(0,-120vh,0);opacity:0}22%{opacity:1}58%{opacity:.55}78%,100%{transform:rotate(-18deg) translate3d(0,150vh,0);opacity:0}}@keyframes borderShimmer{0%,15%{background-position:130% 0}60%,100%{background-position:-130% 0}}@keyframes prismPulse{0%,78%,100%{text-shadow:0 0 0 #fff0}86%{text-shadow:0 0 15px #fff9,0 0 32px #fff4}}@keyframes logoArrival{from{opacity:0;filter:blur(14px);transform:translateY(20px)}to{opacity:1;filter:blur(0);transform:translateY(0)}}@keyframes letterArrival{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}@keyframes searchArrival{from{opacity:0;filter:blur(7px);transform:translateY(17px) scale(.97)}to{opacity:1;filter:blur(0);transform:translateY(0) scale(1)}}@keyframes navReveal{from{opacity:0;translate:0 -8px}to{opacity:1;translate:0 0}}@keyframes twinkle{from{opacity:.08;transform:scale(.65)}to{opacity:.8;transform:scale(1.5)}}@keyframes hazeDrift{from{transform:translate(-5%,-4%) scale(.8)}to{transform:translate(14%,12%) scale(1.15)}}@keyframes trailFloat{from{margin-left:-1.5%;margin-top:-1%}to{margin-left:2%;margin-top:2%}}@keyframes lightTravel{from{transform:translateX(-60vw);opacity:0}15%{opacity:.8}85%{opacity:.8}to{transform:translateX(100vw);opacity:0}}@keyframes crystalDrift{from{translate:-8px -10px;rotate:-5deg}to{translate:12px 15px;rotate:6deg}}
 @media(max-width:600px){.brand{left:8px;gap:0}.brand span{display:none}.brand-mark{width:20px;height:24px}.navbar{top:0;min-height:62px;padding:8px 7px 8px 35px;gap:clamp(5px,2vw,12px)}.page-view{margin-top:92px}.page-rule{margin-top:20px}.empty-state{min-height:170px;padding:26px 22px}.navbar button{padding-left:6px;padding-right:6px}.navbar{top:0;gap:clamp(5px,2vw,12px)}.navbar button{font-size:10px;letter-spacing:0}.center{width:88vw;transform:translateY(-3vh)}.logo{font-size:clamp(37px,9vw,54px);margin-bottom:34px;letter-spacing:.2em}.search{height:64px}.search-icon{margin-left:21px;width:20px;height:20px}#search{padding-left:16px;font-size:14px}.go{width:44px;height:44px;margin-right:7px}.crystal{opacity:calc(var(--opacity)*.65)}}@media(max-width:370px){.navbar{gap:9px}.navbar button{font-size:9px}.logo{font-size:35px}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+
+/* Preferences page */
+.settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:25px;padding-bottom:28px}
+.setting-card{min-width:0;padding:20px;border:1px solid #ffffff18;border-radius:15px;background:linear-gradient(135deg,#ffffff09,#ffffff03);backdrop-filter:blur(8px)}
+.setting-card h2{margin:0 0 6px;font-size:14px;font-weight:500;color:#eee}
+.setting-card p{margin:0;color:#888;font-size:12px;line-height:1.6}
+.setting-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.setting-toggle{flex:0 0 auto;width:42px;height:24px;padding:3px;border:1px solid #ffffff28;border-radius:20px;background:#ffffff12;cursor:pointer;transition:background .2s,border-color .2s}
+.setting-toggle:after{content:"";display:block;width:16px;height:16px;border-radius:50%;background:#888;transition:transform .2s,background .2s}
+.setting-toggle[aria-pressed="true"]{background:var(--accent,#eee);border-color:var(--accent,#eee)}
+.setting-toggle[aria-pressed="true"]:after{background:#090909;transform:translateX(17px)}
+.setting-toggle:focus-visible,.accent-choice:focus-visible,.setting-action:focus-visible{outline:2px solid var(--accent,#fff);outline-offset:4px}
+.accent-options{display:flex;gap:9px;margin-top:15px;flex-wrap:wrap}
+.accent-choice{width:29px;height:29px;padding:0;border:2px solid transparent;border-radius:50%;background:var(--swatch);cursor:pointer;box-shadow:inset 0 0 0 4px #090909;outline-offset:3px}
+.accent-choice[aria-pressed="true"]{outline:1px solid var(--swatch)}
+.setting-action{margin-top:15px;padding:9px 12px;border:1px solid #ffffff25;border-radius:9px;background:#ffffff08;color:#eee;font-size:12px;cursor:pointer;transition:background .2s}
+.setting-action:hover{background:#ffffff15}
+.setting-note{margin-top:15px;color:#666;font-size:11px}
+body.motion-off *,body.motion-off *:before,body.motion-off *:after{animation-play-state:paused!important;transition-duration:.01ms!important}
+body.low-glow .logo{text-shadow:none}
+body.low-glow .crystal{filter:none;opacity:.3}
+body.low-glow .haze{opacity:.012}
+body.low-glow .scene:after{display:none}
+body.stars-off .stars{display:none}
+@media(max-width:600px){.settings-grid{grid-template-columns:1fr;gap:10px}.setting-card{padding:17px}.page-view.settings-page{width:min(760px,90vw);max-height:calc(100svh - 86px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:#444 transparent}.page-view.settings-page .page-rule{margin-top:18px}}
 </style>
 </head>
 <body>
@@ -60,9 +85,32 @@ for(let i=0;i<48;i++){const star=document.createElement("span");star.className="
 const form=document.getElementById("searchForm"),input=document.getElementById("search"),feedback=document.getElementById("feedback");
 form.addEventListener("submit",event=>{event.preventDefault();const query=input.value.trim().toLowerCase();if(!query){input.focus();return}if(/trap.?the.?cat|chat.?trap|cat trap/.test(query)){window.location.href="games/trap-the-cat.html";return}feedback.textContent='No offline game found. Try “Trap the Cat”.';feedback.classList.add("show")});
 input.addEventListener("input",()=>feedback.classList.remove("show"));
-document.addEventListener("keydown",event=>{const target=event.target;const typing=target instanceof HTMLElement&&(target.matches("input, textarea, select")||target.isContentEditable);if(event.key==="/"&&!typing){event.preventDefault();input.focus()}if(event.key==="Escape"){input.value="";feedback.classList.remove("show");input.blur()}});
+document.addEventListener("keydown",event=>{const target=event.target;const typing=target instanceof HTMLElement&&(target.matches("input, textarea, select")||target.isContentEditable);if(event.key==="/"&&!typing&&preferences.shortcut){event.preventDefault();input.focus()}if(event.key==="Escape"){input.value="";feedback.classList.remove("show");input.blur()}});
 const navButtons=[...document.querySelectorAll("[data-section]")];
 const center=document.querySelector(".center");
+const preferenceDefaults={animations:true,stars:true,glow:true,accent:"white",shortcut:true};
+let preferences={...preferenceDefaults};
+try{preferences={...preferenceDefaults,...JSON.parse(localStorage.getItem("prism-preferences")||"{}")}}catch{}
+function savePreferences(){try{localStorage.setItem("prism-preferences",JSON.stringify(preferences))}catch{}}
+function applyPreferences(){
+  document.body.classList.toggle("motion-off",!preferences.animations);
+  document.body.classList.toggle("stars-off",!preferences.stars);
+  document.body.classList.toggle("low-glow",!preferences.glow);
+  const accents={white:"#f4f4f4",ice:"#9cecff",violet:"#c7a6ff",lime:"#b9f77b"};
+  document.documentElement.style.setProperty("--accent",accents[preferences.accent]||accents.white);
+  document.querySelectorAll(".accent-choice").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.accent===preferences.accent)));
+  document.querySelectorAll("[data-pref]").forEach(b=>b.setAttribute("aria-pressed",String(!!preferences[b.dataset.pref])));
+}
+function settingsMarkup(){return '<p class="page-kicker">PERSONALIZE YOUR EXPERIENCE</p><h1 class="page-title">Settings</h1><div class="page-rule"></div><div class="settings-grid"><section class="setting-card"><div class="setting-row"><div><h2>Ambient animations</h2><p>Pause the moving crystals, shimmer, and background effects.</p></div><button class="setting-toggle" type="button" data-pref="animations" aria-label="Toggle ambient animations" aria-pressed="true"></button></div></section><section class="setting-card"><div class="setting-row"><div><h2>Starfield</h2><p>Show or hide the tiny twinkling stars in the background.</p></div><button class="setting-toggle" type="button" data-pref="stars" aria-label="Toggle starfield" aria-pressed="true"></button></div></section><section class="setting-card"><div class="setting-row"><div><h2>Reduced glow</h2><p>Turn down the bright glow and haze for a calmer look.</p></div><button class="setting-toggle" type="button" data-pref="glow" aria-label="Toggle full glow effects" aria-pressed="true"></button></div></section><section class="setting-card"><h2>Accent color</h2><p>Choose the highlight color used around the interface.</p><div class="accent-options"><button class="accent-choice" style="--swatch:#f4f4f4" data-accent="white" aria-label="White accent" aria-pressed="true"></button><button class="accent-choice" style="--swatch:#9cecff" data-accent="ice" aria-label="Ice blue accent" aria-pressed="false"></button><button class="accent-choice" style="--swatch:#c7a6ff" data-accent="violet" aria-label="Violet accent" aria-pressed="false"></button><button class="accent-choice" style="--swatch:#b9f77b" data-accent="lime" aria-label="Lime accent" aria-pressed="false"></button></div></section><section class="setting-card"><div class="setting-row"><div><h2>Quick search shortcut</h2><p>Use the / key to jump straight to the game search.</p></div><button class="setting-toggle" type="button" data-pref="shortcut" aria-label="Toggle quick search shortcut" aria-pressed="true"></button></div></section><section class="setting-card"><h2>Reset preferences</h2><p>Restore the default PRISM appearance and behavior.</p><button class="setting-action" type="button" data-reset-settings>Reset to defaults</button></section></div><p class="setting-note">Your preferences are saved on this device in this browser.</p>'}
+applyPreferences();
+document.addEventListener("click",event=>{
+  const toggle=event.target.closest("[data-pref]");
+  const accent=event.target.closest("[data-accent]");
+  const reset=event.target.closest("[data-reset-settings]");
+  if(toggle){const key=toggle.dataset.pref;preferences[key]=!preferences[key];savePreferences();applyPreferences()}
+  if(accent){preferences.accent=accent.dataset.accent;savePreferences();applyPreferences()}
+  if(reset){preferences={...preferenceDefaults};savePreferences();applyPreferences()}
+});
 navButtons.forEach(button=>button.addEventListener("click",()=>{
   const section=button.dataset.section;
   let page=document.getElementById("pageView");
@@ -76,11 +124,16 @@ navButtons.forEach(button=>button.addEventListener("click",()=>{
       page.className="page-view";
       page.setAttribute("aria-live","polite");
       page.hidden=true;
-      page.innerHTML='<p class="page-kicker"><span id="pageSectionName">SECTION</span></p><h1 class="page-title" id="pageTitle">Section</h1><div class="page-rule"></div><div class="empty-state"><div class="empty-mark" aria-hidden="true">—</div><h2>Page empty for now</h2><p>This section is still being built. Check back later for updates.</p></div>';
       document.querySelector(".scene").appendChild(page);
     }
-    page.querySelector("#pageSectionName").textContent=section.toUpperCase();
-    page.querySelector("#pageTitle").textContent=section;
+    if(section==="Settings"){
+      page.className="page-view settings-page";
+      page.innerHTML=settingsMarkup();
+      applyPreferences();
+    }else{
+      page.className="page-view";
+      page.innerHTML='<p class="page-kicker">'+section.toUpperCase()+'</p><h1 class="page-title">'+section+'</h1><div class="page-rule"></div><div class="empty-state"><div class="empty-mark" aria-hidden="true">—</div><h2>Page empty for now</h2><p>This section is still being built. Check back later for updates.</p></div>';
+    }
     center.hidden=true;
     page.hidden=false;
   }
