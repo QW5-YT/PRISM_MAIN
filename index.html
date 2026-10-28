@@ -58,7 +58,12 @@ const form=document.getElementById("searchForm"),input=document.getElementById("
 form.addEventListener("submit",event=>{event.preventDefault();const query=input.value.trim().toLowerCase();if(!query){input.focus();return}if(/trap.?the.?cat|chat.?trap|cat trap/.test(query)){window.location.href="games/trap-the-cat.html";return}feedback.textContent='No offline game found. Try “Trap the Cat”.';feedback.classList.add("show")});
 input.addEventListener("input",()=>feedback.classList.remove("show"));
 document.addEventListener("keydown",event=>{const target=event.target;const typing=target instanceof HTMLElement&&(target.matches("input, textarea, select")||target.isContentEditable);if(event.key==="/"&&!typing){event.preventDefault();input.focus()}if(event.key==="Escape"){input.value="";feedback.classList.remove("show");input.blur()}});
-document.querySelectorAll("[data-section]").forEach(button=>button.addEventListener("click",()=>{/* Destinations intentionally blank for now. */}));
+document.querySelectorAll("[data-section]").forEach(button=>button.addEventListener("click",()=>{
+  document.querySelector(".center").hidden=true;
+  document.querySelector(".ambient").hidden=true;
+  document.querySelector(".scene").style.background="#030303";
+  document.querySelectorAll("[data-section]").forEach(tab=>tab.setAttribute("aria-current",tab===button?"page":"false"));
+}));
 </script>
 </body>
 </html>
