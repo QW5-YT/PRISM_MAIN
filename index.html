@@ -96,6 +96,41 @@ body.stars-off .stars{display:none}
 .internal-game-link strong{font-size:14px;font-weight:550}
 .internal-game-link small{margin-top:5px;color:#888;font-size:11px}
 .internal-game-arrow{margin-left:auto;color:#888;font-size:18px}
+
+/* Layout stabilization: keep browser chrome separate from page content. */
+.scene{display:block;height:100svh;min-height:100svh;overflow:hidden}
+.navbar.browser-chrome{left:50%;right:auto;transform:translateX(-50%);min-height:0;justify-content:flex-start}
+.browser-chrome .brand{position:static;left:auto;flex:0 0 auto;margin:0 4px 0 2px}
+.browser-controls{flex:0 0 auto}
+.browser-address-form{flex:1 1 auto}
+.browser-newtab{flex:0 0 auto}
+.center.new-tab-center{position:absolute;left:50%;top:50%;width:min(580px,90vw);margin:0;transform:translate(-50%,-42%)}
+.page-view{position:absolute;z-index:3;top:86px;left:50%;transform:translateX(-50%);margin:0;max-height:calc(100svh - 104px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#444 transparent}
+.page-view[hidden]{display:none!important}
+.page-view.browse-page{width:min(1120px,calc(100% - 32px));margin:0}
+.page-view.games-page{width:min(900px,calc(100% - 32px));margin:0}
+.page-view.settings-page{width:min(760px,calc(100% - 32px));max-height:calc(100svh - 104px);margin:0}
+.browse-frame-wrap{height:min(54vh,620px);min-height:220px}
+@media(max-width:620px){
+ .navbar.browser-chrome{left:8px;right:8px;width:auto;transform:none;justify-content:space-between}
+ .browser-chrome .brand{position:static;left:auto;margin:0}
+ .browser-address-form{flex:1 1 80px}
+ .center.new-tab-center{top:49%;width:90vw;transform:translate(-50%,-50%)}
+ .new-tab-center .logo{font-size:clamp(42px,10vw,62px);letter-spacing:.18em;margin-bottom:26px}
+ .new-tab-center .search{height:62px}
+ .browser-home-links{gap:7px;margin-top:16px}
+ .browser-home-links button{padding:8px 10px}
+ .browser-home-note{font-size:9px;text-align:center}
+ .page-view{top:72px;max-height:calc(100svh - 84px)}
+ .page-view.browse-page,.page-view.games-page,.page-view.settings-page{width:calc(100% - 24px);max-height:calc(100svh - 84px)}
+ .browse-frame-wrap{height:46vh;min-height:200px}
+ .browse-head{margin-bottom:12px}
+}
+@media(max-height:620px) and (min-width:621px){
+ .center.new-tab-center{top:54%;transform:translate(-50%,-50%) scale(.88)}
+ .browse-frame-wrap{height:42vh;min-height:180px}
+}
+
 </style>
 </head>
 <body>
