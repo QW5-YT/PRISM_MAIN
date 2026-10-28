@@ -106,6 +106,36 @@
     return url;
   }
 
+  window.prismBrowseOpen = async function(targetUrl) {
+    const frame = document.getElementById("browseFrame");
+    const status = document.getElementById("browseStatus");
+    if (!frame || !status) return;
+    let target;
+    try {
+      target = new URL(targetUrl);
+      if (!["http:", "https:"].includes(target.protocol)) throw new Error("Only HTTP and HTTPS websites are supported.");
+    } catch (error) {
+      status.textContent = error.message || "That address does not look right.";
+      return;
+    }
+    status.textContent = "Starting Scramjet and opening " + target.hostname + "…";
+    try {
+      const { controller, utils } = await getController();
+      let proxyFrame = frames.get(frame);
+      if (!proxyFrame) {
+        const plugins = [];
+        if (utils.HttpCachePlugin) plugins.push(new utils.HttpCachePlugin());
+        if (utils.CatchEscapedLinksPlugin) plugins.push(new utils.CatchEscapedLinksPlugin(() => new URL(location.href)));
+        proxyFrame = controller.createFrame(frame, { plugins });
+        frames.set(frame, proxyFrame);
+      }
+      proxyFrame.go(target.href);
+      status.textContent = "Opened " + target.hostname + ". Some websites may block embedding or require features unavailable on serverless hosting.";
+    } catch (error) {
+      status.textContent = "Could not start browsing: " + (error && error.message ? error.message : "unknown error");
+    }
+  };
+
   async function browseSubmit(event) {
     if (!event.target || event.target.id !== "browseForm") return;
     event.preventDefault();
@@ -123,24 +153,9 @@
       return;
     }
     address.value = target.href;
-    status.textContent = "Starting Scramjet and opening " + target.hostname + "…";
     if (go) go.disabled = true;
     try {
-      const { controller, utils } = await getController();
-      let proxyFrame = frames.get(frame);
-      if (!proxyFrame) {
-        const plugins = [];
-        if (utils.HttpCachePlugin) plugins.push(new utils.HttpCachePlugin());
-        if (utils.CatchEscapedLinksPlugin) {
-          plugins.push(new utils.CatchEscapedLinksPlugin(() => new URL(location.href)));
-        }
-        proxyFrame = controller.createFrame(frame, { plugins });
-        frames.set(frame, proxyFrame);
-      }
-      proxyFrame.go(target.href);
-      status.textContent = "Opened " + target.hostname + ". Some sites may block embedding or require features unavailable on Vercel's serverless transport.";
-    } catch (error) {
-      status.textContent = "Could not start browsing: " + (error && error.message ? error.message : "unknown error");
+      await window.prismBrowseOpen(target.href);
     } finally {
       if (go) go.disabled = false;
     }
