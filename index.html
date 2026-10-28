@@ -47,13 +47,29 @@ body.low-glow .scene:after{display:none}
 body.stars-off .stars{display:none}
 @media(max-width:600px){.settings-grid{grid-template-columns:1fr;gap:10px}.setting-card{padding:17px}.page-view.settings-page{width:min(760px,90vw);max-height:calc(100svh - 86px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:#444 transparent}.page-view.settings-page .page-rule{margin-top:18px}}
 
+
+/* PRISM Browse / Scramjet */
+.browse-page{width:min(1120px,94vw);margin:88px auto 24px}
+.browse-head{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:20px}
+.browse-intro{max-width:590px;margin:10px 0 0;color:#888;font-size:13px;line-height:1.65}
+.browse-card{overflow:hidden;border:1px solid #ffffff20;border-radius:17px;background:#050505c9;box-shadow:0 22px 75px #0007;backdrop-filter:blur(12px)}
+.browse-toolbar{display:flex;gap:9px;padding:12px;border-bottom:1px solid #ffffff15}
+.browse-address{flex:1;min-width:0;height:44px;padding:0 14px;border:1px solid #ffffff22;border-radius:10px;background:#000b;color:#eee;font-size:13px;outline:none}
+.browse-address:focus{border-color:#ffffff65}
+.browse-go,.browse-stop{padding:0 17px;border:1px solid #ffffff28;border-radius:10px;background:#ffffff12;color:#eee;font-size:12px;cursor:pointer}
+.browse-go:hover,.browse-stop:hover{background:#ffffff20}
+.browse-status{min-height:34px;padding:9px 14px;color:#777;font-size:11px;border-bottom:1px solid #ffffff10}
+.browse-frame-wrap{height:min(62vh,680px);min-height:340px;background:#fff}
+.browse-frame{display:block;width:100%;height:100%;border:0;background:#fff}
+.browse-foot{margin:11px 2px 0;color:#666;font-size:10px;line-height:1.6}
+@media(max-width:650px){.browse-page{width:94vw;margin-top:78px}.browse-head{align-items:flex-start;flex-direction:column}.browse-toolbar{gap:6px;padding:8px}.browse-address{padding:0 10px}.browse-go,.browse-stop{padding:0 11px}.browse-frame-wrap{height:58vh;min-height:300px}}
 </style>
 </head>
 <body>
 <main class="scene" id="scene">
 <nav class="navbar" aria-label="Main navigation">
 <div class="brand" aria-label="PRISM"><svg class="brand-mark" viewBox="0 0 32 38" fill="none" aria-hidden="true"><path d="M16 1.5 30 27 16 36.5 2 27Z" stroke="currentColor" stroke-width="1.4"/><path d="M16 1.5V36.5M2 27l14-9 14 9M16 18 9.2 14 16 1.5 22.8 14Z" stroke="currentColor" stroke-width="1.1" fill="currentColor" fill-opacity=".13"/></svg><span>PRISM</span></div>
-<button type="button" data-section="Home" aria-current="page" class="active"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1Z"/></svg>Home</button><button type="button" data-section="Games"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M7 8h10a4 4 0 0 1 3.8 5.3l-1.2 3.5a2 2 0 0 1-3.2.9L13.8 15h-3.6l-2.6 2.7a2 2 0 0 1-3.2-.9l-1.2-3.5A4 4 0 0 1 7 8Z"/><path d="M7 10v4m-2-2h4m7-1h.01M17 13h.01"/></svg>Games</button><button type="button" data-section="Apps"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Apps</button><button type="button" data-section="Chat"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5H6l-3 2v-6.5A7.5 7.5 0 1 1 20 11.5Z"/><path d="M8 11h.01M12 11h.01M16 11h.01"/></svg>Chat</button><button type="button" data-section="Settings"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="m19.4 15 .1.1 1.4 1.1-1.4 2.4-1.7-.6a8 8 0 0 1-1.7 1l-.3 1.8h-2.8l-.3-1.8a8 8 0 0 1-1.7-1l-1.7.6-1.4-2.4 1.4-1.1a7 7 0 0 1 0-2l-1.4-1.1 1.4-2.4 1.7.6a8 8 0 0 1 1.7-1l.3-1.8h2.8l.3 1.8a8 8 0 0 1 1.7 1l1.7-.6 1.4 2.4-1.4 1.1a7 7 0 0 1 0 2Z" transform="translate(-1 -1) scale(1.08)"/></svg>Settings</button><button type="button" data-section="Account"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>Account</button>
+<button type="button" data-section="Home" aria-current="page" class="active"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1Z"/></svg>Home</button><button type="button" data-section="Games"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M7 8h10a4 4 0 0 1 3.8 5.3l-1.2 3.5a2 2 0 0 1-3.2.9L13.8 15h-3.6l-2.6 2.7a2 2 0 0 1-3.2-.9l-1.2-3.5A4 4 0 0 1 7 8Z"/><path d="M7 10v4m-2-2h4m7-1h.01M17 13h.01"/></svg>Games</button><button type="button" data-section="Apps"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Apps</button><button type="button" data-section="Chat"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5H6l-3 2v-6.5A7.5 7.5 0 1 1 20 11.5Z"/><path d="M8 11h.01M12 11h.01M16 11h.01"/></svg>Chat</button><button type="button" data-section="Settings"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="m19.4 15 .1.1 1.4 1.1-1.4 2.4-1.7-.6a8 8 0 0 1-1.7 1l-.3 1.8h-2.8l-.3-1.8a8 8 0 0 1-1.7-1l-1.7.6-1.4-2.4 1.4-1.1a7 7 0 0 1 0-2l-1.4-1.1 1.4-2.4 1.7.6a8 8 0 0 1 1.7-1l.3-1.8h2.8l.3 1.8a8 8 0 0 1 1.7 1l1.7-.6 1.4 2.4-1.4 1.1a7 7 0 0 1 0 2Z" transform="translate(-1 -1) scale(1.08)"/></svg>Settings</button><button type="button" data-section="Account"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>Account</button><button type="button" data-section="Browse"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="11" cy="11" r="7.5"/><path d="m16.5 16.5 4 4M8.5 11h5M11 8.5v5"/></svg>Browse</button>
 </nav>
 <div class="ambient" aria-hidden="true">
 <div class="haze a"></div><div class="haze b"></div><div class="trail"></div><div class="trail two"></div><div class="stars" id="stars"></div>
@@ -133,6 +149,9 @@ navButtons.forEach(button=>button.addEventListener("click",()=>{
       page.className="page-view settings-page";
       page.innerHTML=settingsMarkup();
       applyPreferences();
+    }else if(section==="Browse"){
+      page.className="page-view browse-page";
+      page.innerHTML=window.prismBrowseMarkup();
     }else{
       page.className="page-view";
       page.innerHTML='<p class="page-kicker">'+section.toUpperCase()+'</p><h1 class="page-title">'+section+'</h1><div class="page-rule"></div><div class="empty-state"><div class="empty-mark" aria-hidden="true">—</div><h2>Page empty for now</h2><p>This section is still being built. Check back later for updates.</p></div>';
@@ -148,5 +167,6 @@ navButtons.forEach(button=>button.addEventListener("click",()=>{
   });
 }));
 </script>
+<script src="/js/browse.js"></script>
 </body>
 </html>
